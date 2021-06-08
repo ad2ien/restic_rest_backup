@@ -13,7 +13,6 @@ services:
         - "traefik.http.services.backup_restserver.loadbalancer.server.port=8000"
         - "traefik.http.routers.backup_restserver.tls=true"
         - "traefik.http.routers.backup_restserver.tls.certresolver=letsencrypt"
-    
     networks:
         - ${TRAEFIK_NETWORK}
 volumes:
