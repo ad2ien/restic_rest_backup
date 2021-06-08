@@ -21,8 +21,8 @@ Start rest server :
 `docker-compose up -d`
 
 
-Create a user with password. Something like :
+Create a user with password. Something like (replace container id, user and pw):
 
-`docker exec -t backup_restserver_1 create_user ${REST_SERVER_USER} ${REST_SERVER_PW}`
+`docker exec -t  prod_backup_backup_restserver_1 create_user ${REST_SERVER_USER} ${REST_SERVER_PW}`
 
 

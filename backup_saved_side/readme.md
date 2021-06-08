@@ -11,9 +11,9 @@ To run a command : either open a console in portainer or
 
 ## Commands :
 
-- list backup :  `restic -r rest:http://compose-with-grafana_restserver_1:8000 snapshots`
+- list backup :  `restic -r rest:https://backupuser:PASSWORD4@rBACKUP_URL snapshots`
 
-- find a specific volume, ex: `restic -r rest:http://compose-with-grafana_restserver_1:8000 find docker_es_elasticsearch`
+- find a specific volume, ex: `restic -r rest:https://backupuser:PASSWORD4@rBACKUP_URLfind docker_es_elasticsearch`
 
 
 - Trigger a backup manually :  `restic backup /mnt/volumes`
@@ -24,11 +24,11 @@ To run a command : either open a console in portainer or
 - Stop the container for which you want to restore a volume
 - Delete the content of the volume repository. This step is necessary to properly restore an elasticsearch volume. Ex : `sudo rm -r /var/lib/docker/volumes/docker_es_elasticsearch`
 
-`restic -r  rest:http://compose-with-grafana_restserver_1:8000 restore $ID --target / --include docker_es_elasticsearch`
+`restic -r  rest:https://backupuser:PASSWORD4@rBACKUP_URL restore $ID --target / --include docker_es_elasticsearch`
 
 
   -  here volume name is *docker_es_elasticsearch* and *$ID* a specific snapshot id or "latest"
   -  *--target /* because the absolute path is used when restoring. "/mnt/test" if you ant to try it first
-  -  Replace `http://compose-with-grafana_restserver_1:8000` with the Rest server url
+  -  Replace `https://backupuser:PASSWORD4@rBACKUP_URL` with the Rest server url
 
 
