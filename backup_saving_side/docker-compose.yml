@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+  backup_restserver:
+    image: gitlab.okp4.com:5050/adrien/restic_rest_backup/rest_server
+    volumes:
+      - backup_data:/data
+    environment:
+      # DISABLE_AUTHENTICATION: 1
+    #   OPTIONS: "--prometheus"
+    # ports:
+    #   - "127.0.0.1:8010:8000"
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=web"
+        - "traefik.http.routers.backup_restserver.rule=Host(`${REST_SERVER_URL}`)"
+        - "traefik.http.routers.backup_restserver.entrypoints=websecure"
+        - "traefik.http.services.backup_restserver.loadbalancer.server.port=8000"
+        - "traefik.http.routers.backup_restserver.tls=true"
+        - "traefik.http.routers.backup_restserver.tls.certresolver=letsencrypt"
+    
+    networks:
+        - ${TRAEFIK_NETWORK}
+volumes:
+    backup_data:  
+
+networks:
+    ${TRAEFIK_NETWORK}:
+        external: true
+      
