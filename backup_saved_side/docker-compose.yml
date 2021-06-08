@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+    restic:
+        container_name: restic
+        image: mazzolino/restic
+        hostname: docker
+        environment:
+            BACKUP_CRON: ${BACKUP_CRON}
+            RUN_ON_STARTUP: "true"
+            RESTIC_REPOSITORY: ${REST_SERVER_DESTINATION_BACKUP}
+            RESTIC_PASSWORD: x2mbFdSR
+            RESTIC_BACKUP_SOURCES: /mnt/volumes
+            RESTIC_FORGET_ARGS: --keep-daily 5 --keep-weekly 4 --keep-monthly 2
+        volumes:
+            - ${HOST_SOURCE_BACKUP}:/mnt/volumes
+        networks:
+        - ${TRAEFIK_NETWORK}
+
+networks:
+    ${TRAEFIK_NETWORK}:
+        external: true
+        
