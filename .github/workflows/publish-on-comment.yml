@@ -1,0 +1,26 @@
+name: Publish-on-comment
+
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: khan/pull-request-comment-trigger@v1.1.0
+        id: check
+        with:
+          trigger: "/publish"
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    outputs:
+      triggered: ${{ steps.check.outputs.triggered }}
+
+  fake-publish-image:
+    needs: trigger
+    if: needs.trigger.outputs.triggered == 'true'
+    uses: ./.github/workflows/fake-publish.yml
