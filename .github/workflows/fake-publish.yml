@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - run: " ##### publish ######"
+      - run: echo " ##### publish ######"
         if: steps.check.outputs.triggered == 'true'
