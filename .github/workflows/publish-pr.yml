@@ -6,7 +6,6 @@ on:
 
 jobs:
   pr-comment-jobs:
-    
     runs-on: ubuntu-20.04
     steps:
       - name: Check out repository
@@ -15,6 +14,6 @@ jobs:
           echo "display some env var"
           echo "pull request " ${{ github.event.issue.pull_request }}
           echo "github.event.comment.body" ${{ github.event.comment.body }}
-      # - run: echo "##### publish ######"
         # if: ${{ github.event.issue.pull_request && github.event.comment.body == '/publish' }}
         # name: fake-publish
+      # - run: echo "##### publish ######"
