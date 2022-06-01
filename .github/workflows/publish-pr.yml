@@ -15,7 +15,5 @@ jobs:
           echo "pull request " ${{ github.event.issue.pull_request }}
           echo "github.event.comment.body" ${{ github.event.comment.body }}
       - run: echo __publish__
-        if: |
-          ${{ github.event.issue.pull_request }} &&
-          ${{ github.event.comment.body }} == '/publish'
+        if: ${{ github.event.issue.pull_request && github.event.comment.body  == '/publish' }}
         name: fake-publish
