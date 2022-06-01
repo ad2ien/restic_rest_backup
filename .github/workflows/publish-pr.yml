@@ -4,16 +4,13 @@ on:
   issue_comment:
     types: [created, edited]
 
+env:
+  PUBLISH_COMMAND: "/publish"
+
 jobs:
   pr-comment-jobs:
+    if: ${{ github.event.issue.pull_request && github.event.comment.body  == env.PUBLISH_COMMAND }}
     runs-on: ubuntu-20.04
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - run: |
-          echo "display some env var"
-          echo "pull request " ${{ github.event.issue.pull_request }}
-          echo "github.event.comment.body" ${{ github.event.comment.body }}
       - run: echo __publish__
-        if: ${{ github.event.issue.pull_request && github.event.comment.body  == '/publish' }}
         name: fake-publish
