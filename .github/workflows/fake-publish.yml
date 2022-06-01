@@ -1,9 +1,8 @@
 name: Publish
 
 on:
-  workflow_call:
   push:
-    branches: [master]
+    branches: [main]
     tags: ["v*"]
 
 jobs:
