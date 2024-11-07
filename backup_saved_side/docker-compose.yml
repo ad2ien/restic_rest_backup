@@ -1,4 +1,3 @@
-version: "3.2"
 services:
     restic:
         container_name: restic
@@ -8,7 +7,7 @@ services:
             BACKUP_CRON: ${BACKUP_CRON}
             RUN_ON_STARTUP: "true"
             RESTIC_REPOSITORY: ${REST_SERVER_DESTINATION_BACKUP}
-            RESTIC_PASSWORD: ${REST_PASSWORD}
+            RESTIC_PASSWORD: ${RESTIC_PASSWORD}
             RESTIC_BACKUP_SOURCES: /mnt/volumes
             RESTIC_FORGET_ARGS: --keep-daily 5 --keep-weekly 4 --keep-monthly 2
         volumes:
