@@ -1,5 +1,3 @@
-version: '3.2'
-
 services:
   backup_restserver:
     image: restic/rest-server:latest
