@@ -17,13 +17,13 @@ Copy it in the current folder
 Make an alias for convenience
 
 ```bash
-alias restic-util="docker compose -f docker-compose-utils.yml run --rm restic-"
+alias restic-util="docker compose -f docker-compose-utils.yml run --rm"
 ```
 
 ## Init Restic Repo
 
 ```bash
-restic-util init
+restic-util restic-init
 ```
 
 fill `.env` with password
@@ -37,14 +37,14 @@ docker compose up -d
 ## List Snapshots
 
 ```bash
-restic-util list-snapshots
+restic-util restic-list-snapshots
 ```
 
 ## Restore
 
 - Make sur to have all the input before doing anything <https://restic.readthedocs.io/en/stable/050_restore.html>
-- Edit restic-restore service depending on what you want to restoe
+- Edit restic-restore service depending on what you want to restore
 
 ```bash
-restic-util restore
+restic-util restic-restore
 ```
